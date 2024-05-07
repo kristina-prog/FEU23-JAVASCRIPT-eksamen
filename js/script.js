@@ -23,10 +23,20 @@ fetch(
     console.log(data);
     const observationsContainer = document.getElementById("observations");
     observationsContainer.innerHTML = "";
+    observationsContainer.classList.add("observationsContainer");
+
     data.forEach((observation) => {
       const observationElement = document.createElement("div");
-      observationElement.textContent = `${observation.comName} - ${observation.locName}- ${observation.howMany}`;
+      observationElement.classList.add("observationElement");
+      observationElement.innerHTML = `<h2 class="comName">${observation.comName}</h2> <h3 class="locName">${observation.locName}</h3>`;
       observationsContainer.appendChild(observationElement);
+
+      const imageElement = document.createElement("img");
+      imageElement.src =
+        "https://plus.unsplash.com/premium_photo-1687880581630-07ed705e67a8?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+      imageElement.alt = observation.comName; // Set alt text for accessibility
+      imageElement.classList.add("birdImage");
+      observationElement.appendChild(imageElement);
     });
   })
   .catch((error) => {

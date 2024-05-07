@@ -1,0 +1,36 @@
+ul {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  align-items: end;
+  justify-content: end;
+}
+
+h1 {
+  text-align: center;
+}
+
+.observationsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.observationElement {
+  padding: 10px;
+  margin-bottom: 10px;
+  max-width: 350px;
+  height: auto;
+  background-color: aqua;
+}
+
+.textContent {
+  font-size: 20px;
+}
+
+.birdImage {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
