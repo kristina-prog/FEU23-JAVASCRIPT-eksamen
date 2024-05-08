@@ -1,16 +1,15 @@
-// Your eBird API key: 3ajmef4jnrs
-
-/* GET Recent nearby observations 
-https://api.ebird.org/v2/data/obs/geo/recent?lat={{lat}}&lng={{lng}}
-*/
-
 const apiKeyBird = "3ajmef4jnrs";
 const latitude = "59.13013861789361";
 const longitude = "10.226233913008375";
 
-/* fetches recent nearby observations for the specified latitude and longitude using the eBird API */
+const urlString = window.location.href;
+const url = new URL(urlString);
+const birdParam = url.searchParams.get("bird");
+const speciesCode = birdParam;
+
+/* More information on the selected bird */
 fetch(
-  `https://api.ebird.org/v2/data/obs/geo/recent?lat=${latitude}&lng=${longitude}&key=${apiKeyBird}`
+  `https://api.ebird.org/v2/data/obs/geo/recent/${speciesCode}?lat=${latitude}&lng=${longitude}&key=${apiKeyBird}`
 )
   .then((response) => {
     if (!response.ok) {
@@ -18,19 +17,23 @@ fetch(
     }
     return response.json();
   })
-
   .then((data) => {
+    const observation = data[0];
     console.log(data);
-    const observationsContainer = document.getElementById("observations");
-    observationsContainer.innerHTML = "";
-    observationsContainer.classList.add("observationsContainer");
+    const selectedBird = document.createElement("div");
+    selectedBird.classList.add("selectedBird");
+    const amount = observation.howMany
+      ? `<h3 class="howMany">How many: ${observation.howMany}</h3>`
+      : "";
+    selectedBird.innerHTML = `
+    <h1 class="comName">${observation.comName}</h1>
+    <h2 class="sciName">Scientific name: ${observation.sciName}</h2>
+    <h3 class="locName">Where: ${observation.locName}</h3>
+    <h3 class="obsDt">When: ${observation.obsDt}</h3> 
+    ${amount}`;
 
-    data.forEach((observation) => {
-      const observationElement = document.createElement("div");
-      observationElement.classList.add("observationElement");
-      observationElement.textContent = `${observation.comName} - ${observation.locName} - ${observation.howMany}`;
-      observationsContainer.appendChild(observationElement);
-    });
+    // Append the selected bird element to the document body or a specific container
+    document.body.appendChild(selectedBird);
   })
   .catch((error) => {
     console.log("Error: ", error);
