@@ -13,15 +13,14 @@ fetch(
 )
   .then((response) => {
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("Failed to fetch");
     }
     return response.json();
   })
   .then((data) => {
     const observation = data[0];
     console.log(data);
-    const selectedBird = document.createElement("div");
-    selectedBird.classList.add("selectedBird");
+    const selectedBird = document.querySelector("#selectedBird");
     const amount = observation.howMany
       ? `<h3 class="howMany">How many: ${observation.howMany}</h3>`
       : "";
@@ -31,13 +30,20 @@ fetch(
     <h3 class="locName">Where: ${observation.locName}</h3>
     <h3 class="obsDt">When: ${observation.obsDt}</h3> 
     ${amount}`;
-
-    // Append the selected bird element to the document body or a specific container
-    document.body.appendChild(selectedBird);
   })
   .catch((error) => {
     console.log("Error: ", error);
   });
+
+// Functionality for adding this bird species/ observation to a personal list / "Watchlist"
+const addToWatchlistBtn = document.getElementById("addToWatchlist");
+addToWatchlistBtn.addEventListener("click", addToWatchlist());
+
+const addToWatchlist = () => {
+  let watchlist = JSON.parse(localStorage.getItem()) || [];
+  watchlist.push(observation);
+  alert("Bird observation added to watchlist!");
+};
 
 /* WIKIMEDIA for fetching images
 Client ID:

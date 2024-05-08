@@ -28,7 +28,11 @@ h3 {
   height: auto;
   background-color: aqua;
   text-align: center;
-  cursor: grab;
+  cursor: pointer;
+}
+
+.observations {
+  display: flex;
 }
 
 .textContent {
@@ -39,4 +43,26 @@ h3 {
   width: 100%;
   height: auto;
   max-width: 100%;
+}
+
+#selectedBird {
+  margin-bottom: 32px;
+  margin-top: 64px;
+}
+
+.btnContainer {
+  text-align: center;
+}
+
+.addToWatchlist {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  border: none;
+  font-size: 16px;
+  border-radius: 4px;
+  background-color: coral;
+  cursor: pointer;
+  margin-top: 10px;
 }
