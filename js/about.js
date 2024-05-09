@@ -1,4 +1,7 @@
 const apiKeyBird = "3ajmef4jnrs";
+const apiUrlPost = "https://crudapi.co.uk/api/v1/watchlist";
+const crudApiKey = "d5Nb8qtaJKK1JpdgwpVbyYPixSqITasMLWj49DqZ89qNYH0tmg";
+
 const latitude = "59.13013861789361";
 const longitude = "10.226233913008375";
 
@@ -6,6 +9,8 @@ const urlString = window.location.href;
 const url = new URL(urlString);
 const birdParam = url.searchParams.get("bird");
 const speciesCode = birdParam;
+
+let observation = null;
 
 /* More information on the selected bird */
 fetch(
@@ -36,14 +41,63 @@ fetch(
   });
 
 // Functionality for adding this bird species/ observation to a personal list / "Watchlist"
-const addToWatchlistBtn = document.getElementById("addToWatchlist");
-addToWatchlistBtn.addEventListener("click", addToWatchlist());
 
-const addToWatchlist = () => {
-  let watchlist = JSON.parse(localStorage.getItem()) || [];
+const addToWatchlist = async () => {
+  // CRUD API
+
+  // try {
+  //   const response = await fetch(apiUrlPost, {
+  //     method: `POST`,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${crudApiKey}`,
+  //     },
+  //     body: JSON.stringify(observation),
+  //   });
+  //   if (!response.ok) {
+  //     throw new Error("Failed to add to watchlist");
+  //   }
+
+  //   alert("Bird observation added to watchlist!");
+  // } catch (error) {
+  //   console.error("Error:", error);
+  //   alert("Failed to add bird observation to watchlist");
+  // }
+
+  // localstorage
+  let watchlist = JSON.parse(localStorage.getItem(speciesCode)) || [];
   watchlist.push(observation);
+  localStorage.setItem(speciesCode, JSON.stringify(watchlist));
   alert("Bird observation added to watchlist!");
 };
+
+// CRUD API
+
+// try {
+//   const response = await fetch(apiUrlPost, {
+//     method: `POST`,
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${crudApiKey}`,
+//     },
+//     body: JSON.stringify(observation),
+//   });
+//   if (!response.ok) {
+//     throw new Error("Failed to add to watchlist");
+//   }
+
+//   alert("Bird observation added to watchlist!");
+// } catch (error) {
+//   console.error("Error:", error);
+//   alert("Failed to add bird observation to watchlist");
+// }
+
+const clearList = () => {
+  localStorage.clear();
+};
+
+const addToWatchlistBtn = document.getElementById("addToListBtn");
+addToWatchlistBtn.addEventListener("click", addToWatchlist);
 
 /* WIKIMEDIA for fetching images
 Client ID:
