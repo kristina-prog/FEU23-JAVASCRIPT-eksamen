@@ -17,10 +17,12 @@
       </nav>
     </header>
     <main>
+      <h1>Login</h1>
       <div class="login-container">
         <div class="loginForm">
-          <h1>Login</h1>
           <form id="loginForm">
+            <p>Please enter your email and password</p>
+            <p class="inputInstr">Email:</p>
             <input
               type="email"
               id="email"
@@ -28,6 +30,7 @@
               autocomplete="email"
               required
             />
+            <p class="inputInstr">Password:</p>
             <input
               type="password"
               id="password"
@@ -38,17 +41,18 @@
             <button id="loginBtn" type="submit" aria-label="login">
               Login
             </button>
-            <button id="registerBtn" type="submit" aria-label="register">
+            <!-- <button id="registerBtn" type="submit" aria-label="register">
               Register
-            </button>
+            </button> -->
           </form>
-          <p id="message"></p>
+          <p id="errorMsg"></p>
         </div>
       </div>
     </main>
-    <script src="./js/login.js"></script>
+
     <footer>
       <p>&copy; 2024 Bird Watching App</p>
     </footer>
+    <script src="./js/login.js"></script>
   </body>
 </html>

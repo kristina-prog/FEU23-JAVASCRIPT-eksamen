@@ -120,18 +120,25 @@ h3 {
 
 .loginForm {
   width: 300px;
-  padding: 20px;
   border: none;
-  border-radius: 4px;
   text-align: center;
+}
+
+.inputInstr {
+  text-align: left;
+  margin: 8px auto;
 }
 
 input[type="email"],
 input[type="password"] {
-  display: block;
-  width: 100%;
+  width: 94%;
+  max-width: 300px;
   margin-bottom: 10px;
   padding: 8px;
+}
+
+#errorMsg {
+  color: rgb(119, 6, 6);
 }
 
 footer {
