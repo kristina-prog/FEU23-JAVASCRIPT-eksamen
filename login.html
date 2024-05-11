@@ -18,30 +18,37 @@
     </header>
     <main>
       <div class="login-container">
-        <h1>Login</h1>
-        <form id="loginForm">
-          <input
-            type="email"
-            id="email"
-            aria-label="email"
-            autocomplete="email"
-            required
-          />
-          <input
-            type="password"
-            id="password"
-            aria-label="password"
-            autocomplete="current-password"
-            required
-          />
-          <button id="loginBtn" type="submit" aria-label="login">Login</button>
-          <button id="registerBtn" type="submit" aria-label="register">
-            Register
-          </button>
-        </form>
-        <p id="message"></p>
+        <div class="loginForm">
+          <h1>Login</h1>
+          <form id="loginForm">
+            <input
+              type="email"
+              id="email"
+              aria-label="email"
+              autocomplete="email"
+              required
+            />
+            <input
+              type="password"
+              id="password"
+              aria-label="password"
+              autocomplete="current-password"
+              required
+            />
+            <button id="loginBtn" type="submit" aria-label="login">
+              Login
+            </button>
+            <button id="registerBtn" type="submit" aria-label="register">
+              Register
+            </button>
+          </form>
+          <p id="message"></p>
+        </div>
       </div>
     </main>
     <script src="./js/login.js"></script>
+    <footer>
+      <p>&copy; 2024 Bird Watching App</p>
+    </footer>
   </body>
 </html>
