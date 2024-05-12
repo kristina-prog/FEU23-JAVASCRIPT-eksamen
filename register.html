@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User login</title>
+    <title>User registration</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
@@ -17,37 +17,35 @@
       </nav>
     </header>
     <main>
-      <h1>Login</h1>
-      <div id="loginContainer">
-        <div class="loginForm">
-          <form id="loginForm">
-            <p>Please enter your email and password</p>
+      <h1>Register</h1>
+      <div id="registerContainer">
+        <div class="registerForm">
+          <form id="registerForm">
+            <h2>Register new user</h2>
             <p class="inputInstr">Email:</p>
             <input
               type="email"
-              id="loginEmail"
-              aria-label="email"
+              id="registerEmail"
+              aria-label="registerEmail"
               autocomplete="email"
               required
             />
-            <p class="inputInstr">Password:</p>
+            <p class="inputInstr">Please create a password:</p>
             <input
               type="password"
-              id="loginPassword"
-              aria-label="password"
-              autocomplete="current-password"
+              id="registerPassword"
+              aria-label="registerPassword"
+              autocomplete="new-password"
               required
             />
-            <button id="loginBtn" type="submit" aria-label="login">
-              Login
+            <button id="registerBtn" type="submit" aria-label="register">
+              Register
             </button>
           </form>
-          <p id="loginError" class="error"></p>
+          <p id="registerError" class="error"></p>
           <p>
-            Don't have an account?
-            <a href="./register.html" id="toggleRegister" aria-label="Register"
-              >Register</a
-            >
+            Already have an account?
+            <a href="./login.html" id="toggleLogin">Login</a>
           </p>
         </div>
       </div>
@@ -55,6 +53,6 @@
     <footer>
       <p>&copy; 2024 Bird Watching App</p>
     </footer>
-    <script src="./js/login.js"></script>
+    <script src=""></script>
   </body>
 </html>

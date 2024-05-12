@@ -112,13 +112,15 @@ h3 {
   background-color: var(--orange);
 }
 
-.login-container {
+#loginContainer,
+#registerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.loginForm {
+.loginForm,
+.registerForm {
   width: 300px;
   border: none;
   text-align: center;
@@ -137,7 +139,7 @@ input[type="password"] {
   padding: 8px;
 }
 
-#errorMsg {
+.error {
   color: rgb(119, 6, 6);
 }
 
