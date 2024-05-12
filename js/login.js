@@ -2,14 +2,11 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const crudapiKey = "d5Nb8qtaJKK1JpdgwpVbyYPixSqITasMLWj49DqZ89qNYH0tmg";
-  const apiUrl = "https://crudapi.co.uk/api/v1/";
+  let apiUrl = "https://crudapi.co.uk/api/v1/";
   const dataType = "users";
 
   const loginForm = document.getElementById("loginForm");
   const loginError = document.getElementById("loginError");
-
-  // const loginBtn = document.getElementById("loginBtn");
-  // const registerBtn = document.getElementById("registerBtn");
 
   loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -18,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const password = document.getElementById("loginPassword").value;
 
     try {
-      const response = await fetch(apiUrl + dataType, {
+      const response = await fetch((apiUrl += dataType), {
         /* Failed to load resource: the server responded with a status of 400 */
         method: "POST",
         headers: {
