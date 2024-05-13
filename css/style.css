@@ -103,7 +103,7 @@ h3 {
   border: none;
   font-size: 16px;
   padding: 10px 20px;
-  min-width: 100px;
+  min-width: 135px;
 }
 
 .addToListBtn:hover,
@@ -119,8 +119,7 @@ h3 {
   align-items: center;
 }
 
-.inputInstr,
-label {
+.inputInstr {
   text-align: left;
   margin: 8px auto;
 }

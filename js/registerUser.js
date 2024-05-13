@@ -1,7 +1,11 @@
 // REGISTER NEW USER
 
+// New API key crud: cyo7n-dgvCM9mq_cgoE2NJpLHrlInyh48tshg9IQlvlJgDkrqw
+
 document.addEventListener("DOMContentLoaded", function () {
   const crudapiKey = "d5Nb8qtaJKK1JpdgwpVbyYPixSqITasMLWj49DqZ89qNYH0tmg";
+  const crudapiKey2 = "cyo7n-dgvCM9mq_cgoE2NJpLHrlInyh48tshg9IQlvlJgDkrqw";
+  const crudapiKey3 = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
   let apiUrl = "https://crudapi.co.uk/api/v1/";
   const dataType = "users";
 
@@ -13,31 +17,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const username = document.getElementById("registerEmail").value;
     const password = document.getElementById("registerPassword").value;
+    const url = apiUrl + dataType;
 
-    fetch((apiUrl += dataType), {
-      /* POST https://crudapi.co.uk/api/v1/users 400 (Bad Request)*/
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + crudapiKey,
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to register user");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("User registered successfully:", data);
-        registerError.innerText = "";
-        window.location.href = "./myList.html";
-      })
-      .catch((error) => {
-        console.error("Registration error:", error.message);
-        registerError.textContent =
-          "Failed to register user. Please try again.";
+    try {
+      console.log(JSON.stringify({ username, password }));
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + crudapiKey3,
+        },
+        // body: JSON.stringify({ username, password }),
+        body: JSON.stringify([{ username: username, password: password }]),
       });
+
+      if (!response.ok) {
+        throw new Error("Failed to register user");
+      }
+      const data = await response.json();
+      console.log("User registered successfully:", data);
+      registerError.innerText = "";
+      window.location.href = "./myList.html";
+    } catch (error) {
+      console.error("Registration error:", error.message);
+      registerError.innerText = "Failed to register user. Please try again.";
+    }
   });
 });
