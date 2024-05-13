@@ -3,9 +3,7 @@
 // New API key crud: cyo7n-dgvCM9mq_cgoE2NJpLHrlInyh48tshg9IQlvlJgDkrqw
 
 document.addEventListener("DOMContentLoaded", function () {
-  const crudapiKey = "d5Nb8qtaJKK1JpdgwpVbyYPixSqITasMLWj49DqZ89qNYH0tmg";
-  const crudapiKey2 = "cyo7n-dgvCM9mq_cgoE2NJpLHrlInyh48tshg9IQlvlJgDkrqw";
-  const crudapiKey3 = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
+  const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
   const apiUrl = "https://crudapi.co.uk/api/v1/";
   const dataType = "users";
 
@@ -25,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + crudapiKey3,
+          Authorization: "Bearer " + crudapiKey,
         },
       });
 
