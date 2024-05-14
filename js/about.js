@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const addToWatchlist = async () => {
     // CRUD API
-
     try {
       console.log("obs:", observation);
       const response = await fetch(crudUrl, {
@@ -80,14 +79,14 @@ document.addEventListener("DOMContentLoaded", function () {
     alert("Bird observation added to local storage!");
   };
 
-  const clearList = () => {
-    localStorage.clear();
-  };
+  // const clearList = () => {
+  //   localStorage.clear();
+  // };
 
   const addToWatchlistBtn = document.getElementById("addToListBtn");
   addToWatchlistBtn.addEventListener("click", addToWatchlist);
 
-  clearList();
+  // clearList();
 });
 
 /* WIKIMEDIA for fetching images

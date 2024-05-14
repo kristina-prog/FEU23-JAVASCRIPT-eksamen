@@ -27,9 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("data", data);
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId);
+        console.log("User registered successfully:", data);
+        alert("You are now logged in!");
+        window.location.href = "./watchlist.html";
       } else {
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {

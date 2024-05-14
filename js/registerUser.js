@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       const data = await response.json();
       console.log("User registered successfully:", data);
+      alert("User registered successfully!");
       registerError.innerText = "";
-      window.location.href = "./myList.html";
     } catch (error) {
       console.error("Registration error:", error.message);
       registerError.innerText = "Failed to register user. Please try again.";
