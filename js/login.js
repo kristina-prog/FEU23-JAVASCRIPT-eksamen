@@ -1,7 +1,5 @@
 // LOGIN
 
-// New API key crud: cyo7n-dgvCM9mq_cgoE2NJpLHrlInyh48tshg9IQlvlJgDkrqw
-
 document.addEventListener("DOMContentLoaded", function () {
   const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
   const apiUrl = "https://crudapi.co.uk/api/v1/";
@@ -15,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const username = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
-    const url = apiUrl + dataType;
+    const crudUrl = apiUrl + dataType;
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch(crudUrl, {
         /* Failed to load resource: the server responded with a status of 400 */
         method: "GET",
         headers: {

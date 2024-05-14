@@ -1,10 +1,8 @@
 // REGISTER NEW USER
 
-// New API key crud: cyo7n-dgvCM9mq_cgoE2NJpLHrlInyh48tshg9IQlvlJgDkrqw
-
 document.addEventListener("DOMContentLoaded", function () {
   const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
-  let apiUrl = "https://crudapi.co.uk/api/v1/";
+  const apiUrl = "https://crudapi.co.uk/api/v1/";
   const dataType = "users";
 
   const registerForm = document.getElementById("registerForm");
@@ -15,11 +13,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const username = document.getElementById("registerEmail").value;
     const password = document.getElementById("registerPassword").value;
-    const url = apiUrl + dataType;
+    const crudUrl = apiUrl + dataType;
 
     try {
       console.log(JSON.stringify({ username, password }));
-      const response = await fetch(url, {
+      const response = await fetch(crudUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

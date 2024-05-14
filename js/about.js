@@ -1,103 +1,94 @@
-const apiKeyBird = "3ajmef4jnrs";
-const apiUrlPost = "https://crudapi.co.uk/api/v1/watchlist";
-const crudApiKey = "d5Nb8qtaJKK1JpdgwpVbyYPixSqITasMLWj49DqZ89qNYH0tmg";
+document.addEventListener("DOMContentLoaded", function () {
+  const apiKeyBird = "3ajmef4jnrs";
+  const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
+  const apiUrl = "https://crudapi.co.uk/api/v1/";
+  const dataType = "watchlist";
+  const crudUrl = apiUrl + dataType;
 
-const latitude = "59.13013861789361";
-const longitude = "10.226233913008375";
+  const latitude = "59.13013861789361";
+  const longitude = "10.226233913008375";
 
-const urlString = window.location.href;
-const url = new URL(urlString);
-const birdParam = url.searchParams.get("bird");
-const speciesCode = birdParam;
+  const urlString = window.location.href;
+  const url = new URL(urlString);
+  const birdParam = url.searchParams.get("bird");
+  const speciesCode = birdParam;
 
-let observation = null;
+  let observation;
 
-/* More information on the selected bird */
-fetch(
-  `https://api.ebird.org/v2/data/obs/geo/recent/${speciesCode}?lat=${latitude}&lng=${longitude}&key=${apiKeyBird}`
-)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Failed to fetch");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    const observation = data[0];
-    console.log(data);
-    const selectedBird = document.querySelector("#selectedBird");
-    const amount = observation.howMany
-      ? `<h3 class="howMany">How many: ${observation.howMany}</h3>`
-      : "";
-    selectedBird.innerHTML = `
+  // More information on the selected bird
+  fetch(
+    `https://api.ebird.org/v2/data/obs/geo/recent/${speciesCode}?lat=${latitude}&lng=${longitude}&key=${apiKeyBird}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      observation = data[0];
+      console.log(data);
+      const selectedBird = document.querySelector("#selectedBird");
+      const amount = observation.howMany
+        ? `<h3 class="howMany">How many: ${observation.howMany}</h3>`
+        : "";
+      selectedBird.innerHTML = `
     <h1 class="comName">${observation.comName}</h1>
     <h2 class="sciName">Scientific name: ${observation.sciName}</h2>
     <h3 class="locName">Where: ${observation.locName}</h3>
     <h3 class="obsDt">When: ${observation.obsDt}</h3> 
     ${amount}`;
-  })
-  .catch((error) => {
-    console.log("Error: ", error);
-  });
+    })
+    .catch((error) => {
+      console.log("Error: ", error);
+    });
 
-// Functionality for adding this bird species/ observation to a personal list / "Watchlist"
+  /* Functionality for adding this bird species/ observation to a personal list / "Watchlist" */
 
-const addToWatchlist = async () => {
-  // CRUD API
+  const addToWatchlist = async () => {
+    // CRUD API
 
-  // try {
-  //   const response = await fetch(apiUrlPost, {
-  //     method: `POST`,
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${crudApiKey}`,
-  //     },
-  //     body: JSON.stringify(observation),
-  //   });
-  //   if (!response.ok) {
-  //     throw new Error("Failed to add to watchlist");
-  //   }
+    try {
+      console.log("obs:", observation);
+      const response = await fetch(crudUrl, {
+        method: `POST`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + crudapiKey,
+        },
+        body: JSON.stringify([
+          {
+            "Common name": observation.comName,
+            "Scientific name": observation.sciName,
+          },
+        ]),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add to watchlist");
+      }
 
-  //   alert("Bird observation added to watchlist!");
-  // } catch (error) {
-  //   console.error("Error:", error);
-  //   alert("Failed to add bird observation to watchlist");
-  // }
+      alert("Bird observation added to watchlist!");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to add bird observation to watchlist");
+    }
 
-  // localstorage
-  let watchlist = JSON.parse(localStorage.getItem(speciesCode)) || [];
-  watchlist.push(observation);
-  localStorage.setItem(speciesCode, JSON.stringify(watchlist));
-  alert("Bird observation added to watchlist!");
-};
+    // localstorage
+    let watchlist = JSON.parse(localStorage.getItem(speciesCode)) || [];
+    watchlist.push(observation);
+    localStorage.setItem(speciesCode, JSON.stringify(watchlist));
+    alert("Bird observation added to local storage!");
+  };
 
-// CRUD API
+  const clearList = () => {
+    localStorage.clear();
+  };
 
-// try {
-//   const response = await fetch(apiUrlPost, {
-//     method: `POST`,
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${crudApiKey}`,
-//     },
-//     body: JSON.stringify(observation),
-//   });
-//   if (!response.ok) {
-//     throw new Error("Failed to add to watchlist");
-//   }
+  const addToWatchlistBtn = document.getElementById("addToListBtn");
+  addToWatchlistBtn.addEventListener("click", addToWatchlist);
 
-//   alert("Bird observation added to watchlist!");
-// } catch (error) {
-//   console.error("Error:", error);
-//   alert("Failed to add bird observation to watchlist");
-// }
-
-const clearList = () => {
-  localStorage.clear();
-};
-
-const addToWatchlistBtn = document.getElementById("addToListBtn");
-addToWatchlistBtn.addEventListener("click", addToWatchlist);
+  clearList();
+});
 
 /* WIKIMEDIA for fetching images
 Client ID:
