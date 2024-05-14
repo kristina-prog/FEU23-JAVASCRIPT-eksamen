@@ -79,14 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
     alert("Bird observation added to local storage!");
   };
 
-  // const clearList = () => {
-  //   localStorage.clear();
-  // };
-
   const addToWatchlistBtn = document.getElementById("addToListBtn");
   addToWatchlistBtn.addEventListener("click", addToWatchlist);
-
-  // clearList();
 });
 
 /* WIKIMEDIA for fetching images
