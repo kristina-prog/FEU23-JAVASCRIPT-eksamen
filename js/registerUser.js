@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
           "Content-Type": "application/json",
           Authorization: "Bearer " + crudapiKey,
         },
-        // body: JSON.stringify({ username, password }),
         body: JSON.stringify([{ username: username, password: password }]),
       });
 

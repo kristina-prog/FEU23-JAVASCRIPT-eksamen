@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const response = await fetch(crudUrl, {
-        /* Failed to load resource: the server responded with a status of 400 */
         method: "GET",
         headers: {
           "Content-Type": "application/json",

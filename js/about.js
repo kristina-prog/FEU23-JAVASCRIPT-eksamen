@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
           {
             "Common name": observation.comName,
             "Scientific name": observation.sciName,
+            "Species code": observation.speciesCode,
           },
         ]),
       });
@@ -66,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error("Failed to add to watchlist");
       }
 
-      alert("Bird observation added to watchlist!");
+      // alert("Bird observation added to watchlist!");
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to add bird observation to watchlist");
@@ -76,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let watchlist = JSON.parse(localStorage.getItem(speciesCode)) || [];
     watchlist.push(observation);
     localStorage.setItem(speciesCode, JSON.stringify(watchlist));
-    alert("Bird observation added to local storage!");
+    alert("Bird observation added to watchlist and local storage!");
   };
 
   const addToWatchlistBtn = document.getElementById("addToListBtn");
