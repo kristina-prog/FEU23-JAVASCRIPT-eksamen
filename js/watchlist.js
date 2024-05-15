@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         localStorage.removeItem(item["Species code"]);
         console.log("Item deleted from CRUD API");
         alert("Item deleted from CRUD API and localStorage");
+        location.reload(); // to update the list
       } else {
         console.error("Failed to delete item from CRUD API");
       }
