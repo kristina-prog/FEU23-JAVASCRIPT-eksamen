@@ -85,8 +85,46 @@ h3 {
   margin-top: 64px;
 }
 
+.container {
+  text-align: center;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .btnContainer {
   text-align: center;
+}
+
+.watchlist {
+  list-style: none;
+  padding: 0;
+}
+
+.watchlist li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.watchlist li:last-child {
+  border-bottom: none;
+}
+
+.deleteBtn {
+  background-color: var(--yellow);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.deleteBtn:hover {
+  background-color: var(--orange);
 }
 
 .addToListBtn {
@@ -102,8 +140,7 @@ h3 {
 
 #loginBtn,
 #registerBtn,
-#clearListBtn,
-.deleteBtn {
+#clearListBtn {
   background-color: var(--yellow);
   cursor: pointer;
   border-radius: 4px;
@@ -116,8 +153,7 @@ h3 {
 .addToListBtn:hover,
 #loginBtn:hover,
 #registerBtn:hover,
-#clearListBtn:hover,
-.deleteBtn:hover {
+#clearListBtn:hover {
   background-color: var(--orange);
 }
 
