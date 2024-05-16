@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const renderWatchlist = function (items) {
     watchlistElement.innerHTML = "";
     items.forEach((item) => {
-      // console.log(item);
       const listItem = document.createElement("li");
       listItem.classList.add("listItem");
       listItem.innerText = `${item["Common name"]} (${item["Scientific name"]})`;
@@ -24,8 +23,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   };
 
   const removeFromList = async function (item) {
+    // Item = bird
     try {
-      console.log(item);
       const response = await fetch(crudUrl + "/" + item["_uuid"], {
         method: "DELETE",
         headers: {
@@ -61,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("watchlist data", data);
+        console.log("watchlist data", data); // Birds added to watchlist
 
         renderWatchlist(data.items);
       } else {
@@ -71,14 +70,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.error("Error fetching watchlist data:", error);
     }
   };
-
-  // Clear localStorage
-  // const clearList = () => {
-  //   localStorage.clear();
-  // };
-
-  // const clearListBtn = document.getElementById("clearListBtn");
-  // clearListBtn.addEventListener("click", clearList);
 
   displayWatchlist();
 });
