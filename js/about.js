@@ -1,3 +1,4 @@
+// Make sure DOM is fully loaded before executing the script
 document.addEventListener("DOMContentLoaded", function () {
   const apiKeyBird = "3ajmef4jnrs";
   const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const latitude = "59.13013861789361";
   const longitude = "10.226233913008375";
 
+  // retrieve the species code from URL
   const urlString = window.location.href;
   const url = new URL(urlString);
   const birdParam = url.searchParams.get("bird");
@@ -43,10 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Error: ", error);
     });
 
+  //Adding bird to watchlist CRUD
   const addToWatchlist = async () => {
-    // CRUD API
     try {
-      // Adding bird to watchlist CRUD
       const response = await fetch(crudUrl, {
         method: `POST`,
         headers: {

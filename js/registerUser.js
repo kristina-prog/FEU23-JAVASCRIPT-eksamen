@@ -1,5 +1,6 @@
 // REGISTER NEW USER
 
+// Make sure DOM is fully loaded before executing the script
 document.addEventListener("DOMContentLoaded", function () {
   const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
   const apiUrl = "https://crudapi.co.uk/api/v1/";
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const password = document.getElementById("registerPassword").value;
     const crudUrl = apiUrl + dataType;
 
+    // POST request to CRUD API to register the user
     try {
       console.log(JSON.stringify({ username, password }));
       const response = await fetch(crudUrl, {
@@ -29,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) {
         throw new Error("Failed to register user");
       }
+      // If registration is successful
       const data = await response.json();
       console.log("User registered successfully:", data);
       alert("User registered successfully!");

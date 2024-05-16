@@ -1,5 +1,3 @@
-// Your eBird API key: 3ajmef4jnrs
-
 /* GET Recent nearby observations 
 https://api.ebird.org/v2/data/obs/geo/recent?lat={{lat}}&lng={{lng}}
 */

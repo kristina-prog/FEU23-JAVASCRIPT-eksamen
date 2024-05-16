@@ -1,6 +1,6 @@
 // LOGIN
 
-/* test-user: password: "123", username: "kristina.birkeli@gmail.com"*/
+/* TEST-USER: username: "kristina.birkeli@gmail.com" / password: "123" */
 
 document.addEventListener("DOMContentLoaded", function () {
   const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const password = document.getElementById("loginPassword").value;
     const crudUrl = apiUrl + dataType;
 
+    // Fetch user data from CRUD API
     try {
       const response = await fetch(crudUrl, {
         method: "GET",
@@ -30,17 +31,18 @@ document.addEventListener("DOMContentLoaded", function () {
         loginError.innerText = "";
         const data = await response.json();
         const users = data.items;
-        // console.log("Users: ", users); // List of all the registered users
 
         /* Checking if the provided username and password match any of the users in the response */
         const user = users.find(
           (user) => user.username === username && user.password === password
         );
         if (user) {
+          // If matching user
           console.log("User logged in successfully:", user);
           alert("You are now logged in!");
           window.location.href = "./index.html";
         } else {
+          // If no match
           loginError.innerText = "Invalid username or password";
         }
       } else {

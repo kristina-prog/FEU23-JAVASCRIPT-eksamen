@@ -58,7 +58,6 @@ h3 {
   min-width: 350px;
   height: auto;
   background-color: var(--yellow);
-  text-align: center;
   cursor: pointer;
 }
 

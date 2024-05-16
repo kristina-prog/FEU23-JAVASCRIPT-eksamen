@@ -1,3 +1,4 @@
+// Make sure DOM is fully loaded before executing the script
 document.addEventListener("DOMContentLoaded", async function () {
   const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
   const apiUrl = "https://crudapi.co.uk/api/v1/";
@@ -5,6 +6,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const crudUrl = apiUrl + dataType;
   const watchlistElement = document.getElementById("watchlist");
 
+  // Adding birds to watchlist along with a delete button
   const renderWatchlist = function (items) {
     watchlistElement.innerHTML = "";
     items.forEach((item) => {
@@ -22,6 +24,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   };
 
+  // DELETE request to the CRUD API
+  // Also removes the bird from local storage, if crud delete is successful
   const removeFromList = async function (item) {
     // Item = bird
     try {
@@ -34,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         body: JSON.stringify([{ _uuid: item["_uuid"] }]),
       });
       if (response.ok) {
-        /* Delete item fra localStorage ref krav "Sletting fra persistent lagring skal også slettes fra localStorage" */
+        /* Delete item from localStorage ref krav "Sletting fra persistent lagring skal også slettes fra localStorage" */
         localStorage.removeItem(item["Species code"]);
         console.log("Item deleted from CRUD API");
         alert("Item deleted from CRUD API and localStorage");
@@ -47,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   };
 
-  // display items on the watchlist
+  /* Fetches watchlist from CRUD API and calls renderWatchlist() for displaying items*/
   const displayWatchlist = async function () {
     try {
       const response = await fetch(crudUrl, {
