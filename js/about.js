@@ -47,34 +47,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Adding bird to watchlist CRUD
   const addToWatchlist = async () => {
-    try {
-      const response = await fetch(crudUrl, {
-        method: `POST`,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + crudapiKey,
-        },
-        body: JSON.stringify([
-          {
-            "Common name": observation.comName,
-            "Scientific name": observation.sciName,
-            "Species code": observation.speciesCode,
+    // Checking if the bird is already added to watchlist
+    if (localStorage.getItem(speciesCode)) {
+      console.log("Bird already added to watchlist");
+      return;
+    } else {
+      try {
+        const response = await fetch(crudUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + crudapiKey,
           },
-        ]),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to add to watchlist");
+          body: JSON.stringify([
+            {
+              "Common name": observation.comName,
+              "Scientific name": observation.sciName,
+              "Species code": observation.speciesCode,
+            },
+          ]),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to add to watchlist");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Failed to add bird observation to watchlist");
       }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to add bird observation to watchlist");
-    }
 
-    // Adding bird to localstorage
-    let watchlist = JSON.parse(localStorage.getItem(speciesCode)) || [];
-    watchlist.push(observation);
-    localStorage.setItem(speciesCode, JSON.stringify(watchlist));
-    alert("Bird observation added to watchlist and local storage!");
+      // Adding bird to localstorage
+      let watchlist = JSON.parse(localStorage.getItem(speciesCode)) || [];
+      watchlist.push(observation);
+      localStorage.setItem(speciesCode, JSON.stringify(watchlist));
+      alert("Bird observation added to watchlist and local storage!");
+    }
   };
 
   const addToWatchlistBtn = document.getElementById("addToListBtn");
