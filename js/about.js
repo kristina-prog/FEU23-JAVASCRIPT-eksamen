@@ -43,12 +43,37 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Error: ", error);
     });
 
-  /* Functionality for adding this bird species/ observation to a personal list / "Watchlist" */
+  // const checkDuplicate = async (speciesCode) => {
+  //   try {
+  //     const response = await fetch(crudUrl, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + crudapiKey,
+  //       },
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch watchlist from CRUD API");
+  //     }
+  //     const data = await response.json();
+  //     return data.items.some((item) => item.speciesCode === speciesCode);
+  //   } catch (error) {
+  //     console.error("Error checking if bird is duplicate:", error);
+  //     return false;
+  //   }
+  // };
 
   const addToWatchlist = async () => {
     // CRUD API
     try {
-      console.log("obs:", observation);
+      // Checking if bird already exists in watchlist
+      // const isDuplicate = await checkDuplicate(speciesCode);
+      // if (isDuplicate) {
+      //   console.error("Bird already added to watchlist");
+      //   alert("Bird already added to watchlist");
+      //   return;
+      // }
+      // Adding bird to watchlist CRUD
       const response = await fetch(crudUrl, {
         method: `POST`,
         headers: {
@@ -66,14 +91,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) {
         throw new Error("Failed to add to watchlist");
       }
-
-      // alert("Bird observation added to watchlist!");
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to add bird observation to watchlist");
     }
 
-    // localstorage
+    // Adding bird to localstorage
     let watchlist = JSON.parse(localStorage.getItem(speciesCode)) || [];
     watchlist.push(observation);
     localStorage.setItem(speciesCode, JSON.stringify(watchlist));

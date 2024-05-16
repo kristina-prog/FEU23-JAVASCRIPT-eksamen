@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("User registered successfully:", data);
       alert("User registered successfully!");
       registerError.innerText = "";
+      window.location.href = "./index.html";
     } catch (error) {
       console.error("Registration error:", error.message);
       registerError.innerText = "Failed to register user. Please try again.";

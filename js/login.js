@@ -25,20 +25,32 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (response.ok) {
+        loginError.innerText = "";
         const data = await response.json();
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data.userId);
-        console.log("User registered successfully:", data);
-        alert("You are now logged in!");
-        window.location.href = "./watchlist.html";
+        const users = data.items;
+        console.log("Users: ", users);
+
+        /* checking if the provided username and password match any of the users in the response */
+        const user = users.find(
+          (user) => user.username === username && user.password === password
+        );
+        if (user) {
+          // localStorage.setItem("token", data.token);
+          // localStorage.setItem("userId", data.userId);
+          console.log("User registered successfully:", data);
+          alert("You are now logged in!");
+          window.location.href = "./index.html";
+        } else {
+          loginError.innerText = "Invalid username or password";
+        }
       } else {
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {
           const errorData = await response.json();
           loginError.innerText = errorData.message;
         } else {
+          loginError.innerText = "An unexpected error occurred.";
         }
-        loginError.innerText = "An unexpected error occurred.";
       }
     } catch (error) {
       console.error("Login failed:", error);
