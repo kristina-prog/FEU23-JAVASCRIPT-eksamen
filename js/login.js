@@ -1,9 +1,9 @@
 // LOGIN
 
-/* TEST-USER: username: "kristina.birkeli@gmail.com" / password: "123" */
+/* TEST-USER: se vedlegg for brukernavn / passord */
 
 document.addEventListener("DOMContentLoaded", function () {
-  const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
+  const crudapiKey = ""; // Se vedlegg for key
   const apiUrl = "https://crudapi.co.uk/api/v1/";
   const dataType = "users";
 

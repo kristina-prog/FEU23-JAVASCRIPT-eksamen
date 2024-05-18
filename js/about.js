@@ -1,7 +1,7 @@
 // Make sure DOM is fully loaded before executing the script
 document.addEventListener("DOMContentLoaded", function () {
-  const apiKeyBird = "3ajmef4jnrs";
-  const crudapiKey = "bm2s7HxoXlMTCOz1Twaz_tg6tPfQ1lcdGRiY4lZDY4bkBLr5lQ";
+  const apiKeyBird = ""; // Se vedlegg for key
+  const crudapiKey = ""; // Se vedlegg for key
   const apiUrl = "https://crudapi.co.uk/api/v1/";
   const dataType = "watchlist";
   const crudUrl = apiUrl + dataType;

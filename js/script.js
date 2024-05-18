@@ -2,7 +2,7 @@
 https://api.ebird.org/v2/data/obs/geo/recent?lat={{lat}}&lng={{lng}}
 */
 
-const apiKeyBird = "3ajmef4jnrs";
+const apiKeyBird = ""; // Se vedlegg for key
 const latitude = "59.13013861789361";
 const longitude = "10.226233913008375";
 
