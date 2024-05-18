@@ -1,7 +1,5 @@
 // LOGIN
 
-/* TEST-USER: se vedlegg for brukernavn / passord */
-
 document.addEventListener("DOMContentLoaded", function () {
   const crudapiKey = ""; // Se vedlegg for key
   const apiUrl = "https://crudapi.co.uk/api/v1/";
